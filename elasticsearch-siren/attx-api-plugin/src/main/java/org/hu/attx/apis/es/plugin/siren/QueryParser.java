@@ -29,7 +29,7 @@ public class QueryParser {
     
     private static ConciseQueryBuilder sb = new ConciseQueryBuilder();
     
-    public static QueryBuilder getSirenQuery(String queryString) throws Exception {
+    public static AbstractNodeQuery getSirenQuery(String queryString) throws Exception {
         org.apache.lucene.queryparser.classic.QueryParser parser = new org.apache.lucene.queryparser.classic.QueryParser(Version.LUCENE_36, "", new StandardAnalyzer(Version.LUCENE_36));
         Query q = parser.parse(queryString);
         
@@ -68,7 +68,7 @@ public class QueryParser {
             throw new Exception("Unknown query type: " + q.getClass().getName());
         }
         
-        return new WrapperQueryBuilder(nq.toString());
+        return nq;
     }
     
     private static AbstractNodeQuery getSingleQuery(String field, String value) throws Exception {

@@ -15,6 +15,7 @@ import org.elasticsearch.common.xcontent.XContentFactory;
 import org.elasticsearch.common.xcontent.XContentParser;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.index.query.QueryBuilder;
+import org.elasticsearch.index.query.WrapperQueryBuilder;
 import org.elasticsearch.rest.RestChannel;
 import org.elasticsearch.rest.RestController;
 import org.elasticsearch.rest.RestRequest;
@@ -51,7 +52,7 @@ class CollectionRestHandler extends AbstractRestHandler {
             }
             else {
                 String decodedQuery = URLDecoder.decode(q);
-                qb = QueryParser.getSirenQuery(decodedQuery);
+                qb = new WrapperQueryBuilder(QueryParser.getSirenQuery(decodedQuery).toString());
 
             }
 
