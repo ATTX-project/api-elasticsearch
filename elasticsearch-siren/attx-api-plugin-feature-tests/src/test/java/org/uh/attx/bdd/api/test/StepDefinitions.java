@@ -56,9 +56,9 @@ public class StepDefinitions implements En {
             try {
                 GetRequest get = Unirest.get("http://localhost:9200").header("accept", "application/json");
                 HttpResponse<JsonNode> response =  get.asJson();
-                JSONAssert.assertEquals("{status:200}", response.getBody().getObject(), JSONCompareMode.LENIENT);
-              
-                
+                JSONObject result = response.getBody().getObject();
+                JsonAssert.assertJsonPartEquals(200, result, "status");
+                JsonAssert.assertJsonPartEquals("1.3.4", result, "version.number");
                 
             } catch (Exception ex) {
                 Logger.getLogger(StepDefinitions.class.getName()).log(Level.SEVERE, null, ex);
@@ -96,7 +96,8 @@ public class StepDefinitions implements En {
                 String key = keys.next(); // first node
                 JSONObject result = nodes.getJSONObject(key);
                 
-                JsonAssert.assertJsonPartEquals("siren-plugin", result, "plugins[0].name");
+                JsonAssert.assertJsonPartEquals("analysis-icu", result, "plugins[0].name");
+                JsonAssert.assertJsonPartEquals("siren-plugin", result, "plugins[1].name");
                 
                 
             } catch (Exception ex) {
