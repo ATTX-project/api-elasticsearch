@@ -21,12 +21,15 @@ dependencies {
     //
     // You can read more about how to add dependency here:
     //   http://www.gradle.org/docs/current/userguide/dependency_management.html#sec:how_to_declare_your_dependencies
-    testCompile 'com.codeborne:selenide:4.0',
-            'info.cukes:cucumber-java8:1.2.5',
+    testCompile \
+        'info.cukes:cucumber-java8:1.2.5',
         'info.cukes:cucumber-junit:1.2.5',
         'org.skyscreamer:jsonassert:1.4.0',
         'net.javacrumbs.json-unit:json-unit:1.16.0',
-        'net.javacrumbs.json-unit:json-unit-fluent:1.16.0'
+        'net.javacrumbs.json-unit:json-unit-fluent:1.16.0',
+        'com.mashape.unirest:unirest-java:1.4.9',
+        'org.seleniumhq.selenium:selenium-java:3.0.0',
+        'org.seleniumhq.selenium:selenium-support:2.47.1'        
     
 
 }
