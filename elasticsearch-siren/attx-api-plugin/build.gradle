@@ -27,3 +27,12 @@ dependencies {
         'com.sindicetech.siren:siren-qparser:1.4',
         'org.skyscreamer:jsonassert:1.4.0'
 }
+
+// If one wants to have tets reports in some other directory
+//test.reports.html.destination = file("$buildDir/reports/tests")
+
+task zip(type: Zip) {
+    from configurations.runtime.allArtifacts.files
+    from configurations.runtime
+    into(project.name + '-' + project.version)
+}
