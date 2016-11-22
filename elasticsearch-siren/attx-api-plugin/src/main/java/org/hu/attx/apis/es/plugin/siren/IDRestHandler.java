@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.Client;
+import org.elasticsearch.common.inject.Inject;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
@@ -25,6 +26,7 @@ import org.elasticsearch.search.SearchHit;
  */
 public class IDRestHandler extends AbstractRestHandler {
 
+    @Inject
     public IDRestHandler(Settings settings, Client client) {
         super(settings, client);
     }
