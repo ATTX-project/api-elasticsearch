@@ -1,3 +1,4 @@
 /.nb-gradle/
+/.gradle/
 /dc-elasticsearch-siren/attx-api-plugin-feature-tests/build/
 /dc-elasticsearch-siren/attx-api-plugin/build/
