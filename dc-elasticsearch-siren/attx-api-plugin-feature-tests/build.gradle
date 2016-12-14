@@ -1,14 +1,16 @@
-// Note: "common.gradle" in the root project contains additional initialization
-//   for this project. This initialization is applied in the "build.gradle"
-//   of the root project.
+buildscript {
+  repositories {
+    maven {
+      url "https://plugins.gradle.org/m2/"
+    }
+  }
+  dependencies {
+    classpath "gradle.plugin.com.hierynomus.gradle.plugins:jython-gradle-plugin:0.3.1"
+  }
+}
 
-// NetBeans will automatically add "run" and "debug" tasks relying on the
-// "mainClass" property. You may however define the property prior executing
-// tasks by passing a "-PmainClass=<QUALIFIED_CLASS_NAME>" argument.
-//
-// Note however, that you may define your own "run" and "debug" task if you
-// prefer. In this case NetBeans will not add these tasks but you may rely on
-// your own implementation.
+apply plugin: "com.github.hierynomus.jython"
+
 if (!hasProperty('mainClass')) {
     ext.mainClass = ''
 }
@@ -29,7 +31,10 @@ dependencies {
         'net.javacrumbs.json-unit:json-unit-fluent:1.16.0',
         'com.mashape.unirest:unirest-java:1.4.9',
         'org.seleniumhq.selenium:selenium-java:3.0.0',
-        'org.seleniumhq.selenium:selenium-support:2.47.1'        
+        'org.seleniumhq.selenium:selenium-support:2.47.1',
+        'info.cukes:cucumber-jython:1.2.5',
+        'org.python:jython-standalone:2.7.1b3'        
+    
     
 
 }
