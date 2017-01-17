@@ -12,7 +12,6 @@ import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.request.GetRequest;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
@@ -24,9 +23,6 @@ import net.javacrumbs.jsonunit.JsonAssert;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.junit.Assert;
-import org.skyscreamer.jsonassert.JSONAssert;
-import org.skyscreamer.jsonassert.JSONCompareMode;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
