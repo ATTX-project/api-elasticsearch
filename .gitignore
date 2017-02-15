@@ -106,3 +106,4 @@ modules.xml
 *.ipr
 
 # End of https://www.gitignore.io/api/intellij,intellij+iml
+/dc-feature-tests/build/
