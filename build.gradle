@@ -14,3 +14,18 @@ subprojects {
 repositories {
     mavenCentral()
 }
+
+ext {
+    javaProjectList = ['dc-elasticsearch-siren',
+                       'attx-api-plugin',
+                       'attx-api-plugin-feature-tests',
+                       'dc-feature-tests']
+}
+
+def javaProjects() {
+    subprojects.findAll { javaProjectList.contains(it.name)}
+}
+
+configure(javaProjects()) {
+    apply from: rootProject.file('commonJava.gradle')
+}
