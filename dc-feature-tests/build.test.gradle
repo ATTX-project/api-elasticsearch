@@ -3,6 +3,6 @@ plugins {
 }
 
 dependencies {
-    testRuntime  \
-        fileTree(dir: 'build/libs', include: ['*.jar'])      
+  testRuntime  \
+    fileTree(dir: 'build/libs', include: ['*.jar'])      
 }

@@ -2,45 +2,42 @@ apply plugin: 'com.chrisgahlert.gradle-dcompose-plugin'
 apply plugin: 'com.github.johnrengelman.shadow'
 
 dcompose {
-    createComposeFile.useTags = true    
-    registry ('http://attx-dev:5000') {}
-    registry ('http://attx-dev.hulib.helsinki.fi:5000') {}  
-     
+    createComposeFile.useTags = true
+    registry ("${registryURL}") {}
+
     essiren {
-        image = 'attx-dev.hulib.helsinki.fi:5000/essiren:latest'
+        image = "${imageRepo}:${imageRepoPort}/essiren:latest"
         exposedPorts = ['9200', '9300']
-        portBindings = ['9200:9200', '9300:9300']            
-    }   
+        portBindings = ['9200:9200', '9300:9300']
+    }
 
     test {
-        ignoreExitCode = true
-        baseDir = file('.')
-        dockerFilename = 'Dockerfile'        
-        binds = ["/var/run/docker.sock:/run/docker.sock"]
-        command = ['sh', '-c', '/tmp/runTests.sh']
-        dependsOn = [essiren]
-        waitForCommand = true
+      ignoreExitCode = true
+      baseDir = file('.')
+      dockerFilename = 'Dockerfile'
+      binds = ["/var/run/docker.sock:/run/docker.sock"]
+      command = ['sh', '-c', '/tmp/runTests.sh']
+      dependsOn = [essiren]
+      waitForCommand = true
     }
-    
-
 }
 
 task copyReportFiles(type: DcomposeCopyFileFromContainerTask) {
-    service = dcompose.test       
+    service = dcompose.test
     containerPath = '/tmp/build/reports'
     destinationDir = file("build/from-container/")
-    cleanDestinationDir = false  
+    cleanDestinationDir = false
 }
 
 startTestContainer.finalizedBy('copyReportFiles')
 
 // making sure the that fresh build of test classes is done before building the image
-buildTestImage.dependsOn('shadowJar')
-buildTestImage.dependsOn('testClasses')
+buildTestImage.dependsOn shadowJar
+buildTestImage.dependsOn testClasses
 
 
 shadowJar {
-  classifier = 'tests'
-  from sourceSets.test.output
-  configurations = [project.configurations.testRuntime]
+    classifier = 'tests'
+    from sourceSets.test.output
+    configurations = [project.configurations.testRuntime]
 }
