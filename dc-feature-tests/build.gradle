@@ -6,19 +6,22 @@ dcompose {
     registry ("${registryURL}") {}
 
     essiren {
+        forcePull = true
+        forceRemoveImage = true
         image = "${imageRepo}:${imageRepoPort}/essiren:latest"
         exposedPorts = ['9200', '9300']
         portBindings = ['9200:9200', '9300:9300']
     }
 
     test {
-      ignoreExitCode = true
-      baseDir = file('.')
-      dockerFilename = 'Dockerfile'
-      binds = ["/var/run/docker.sock:/run/docker.sock"]
-      command = ['sh', '-c', '/tmp/runTests.sh']
-      dependsOn = [essiren]
-      waitForCommand = true
+        ignoreExitCode = true
+        baseDir = file('.')
+        dockerFilename = 'Dockerfile'
+        binds = ["/var/run/docker.sock:/run/docker.sock"]
+        command = ['sh', '-c', '/tmp/runTests.sh']
+        dependsOn = [essiren]
+        waitForCommand = true
+        forceRemoveImage = true
     }
 }
 
@@ -29,7 +32,7 @@ task copyReportFiles(type: DcomposeCopyFileFromContainerTask) {
     cleanDestinationDir = false
 }
 
-startTestContainer.finalizedBy('copyReportFiles')
+startTestContainer.finalizedBy copyReportFiles
 
 // making sure the that fresh build of test classes is done before building the image
 buildTestImage.dependsOn shadowJar
@@ -40,4 +43,9 @@ shadowJar {
     classifier = 'tests'
     from sourceSets.test.output
     configurations = [project.configurations.testRuntime]
+}
+
+task integTest {
+    dependsOn startTestContainer
+    finalizedBy removeImages
 }
