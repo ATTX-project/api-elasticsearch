@@ -18,3 +18,17 @@ task zip(type: Zip) {
     from configurations.runtime
     into(project.name + '-' + project.version)
 }
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: "${artifactRepoURL}") {
+                  authentication(userName: "${artifactRepoUser}", password: "${artifactRepoPassword}")
+            }
+            pom.project {
+                groupId = "${dcGroupID}"
+                description "ElasticSearch Siren API Plugin."
+            }
+        }
+    }
+}
