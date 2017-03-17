@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.hu.attx.apis.es.plugin.siren;
+package org.uh.hulib.attx.dc.es.siren;
 
 import com.sindicetech.siren.qparser.tree.dsl.AbstractNodeQuery;
 import com.sindicetech.siren.qparser.tree.dsl.BooleanQuery;
