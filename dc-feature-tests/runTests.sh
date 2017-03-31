@@ -1,13 +1,9 @@
 #!/bin/sh
 
-: ${SLEEP_LENGTH:=2}
+dockerize -wait http://essiren:9200 -timeout 60s
+dockerize -wait tcp://essiren:9300 -timeout 60s
+dockerize -wait http://es5:9210 -timeout 60s
+# wait for es5 9310 apparently not working
+# dockerize -wait tcp://es5:9310 -timeout 60s
 
-wait_for() {
-  echo Waiting for $1 to listen on $2... >> /tmp/log
-  while ! nc -z $1 $2; do echo sleeping >> /tmp/log ; sleep $SLEEP_LENGTH; done
-}
-
-wait_for "essiren" "9200"
-wait_for "essiren" "9300"
-
-gradle -b build.gradle --offline test
+gradle -b build.gradle --offline integTest
