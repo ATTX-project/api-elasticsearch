@@ -127,14 +127,6 @@ task runIntegTests(type: Test) {
     dependsOn startEs5Container
 
     doFirst {
-        systemProperty 'frontend.port', dcompose.frontend.findHostPort(8080)
-        systemProperty 'frontend.host', dcompose.frontend.dockerHost
-        systemProperty 'wfapi.port', dcompose.wfapi.findHostPort(4301)
-        systemProperty 'wfapi.host', dcompose.wfapi.dockerHost
-        systemProperty 'fuseki.port', dcompose.fuseki.findHostPort(3030)
-        systemProperty 'fuseki.host', dcompose.fuseki.dockerHost
-        systemProperty 'gmapi.port', dcompose.gmapi.findHostPort(4302)
-        systemProperty 'gmapi.host', dcompose.gmapi.dockerHost
         systemProperty 'essiren.port', dcompose.essiren.findHostPort(9200)
         systemProperty 'essiren.tcp', dcompose.essiren.findHostPort(9300)
         systemProperty 'essiren.host', dcompose.essiren.dockerHost
@@ -142,14 +134,6 @@ task runIntegTests(type: Test) {
         systemProperty 'es5.host', dcompose.es5.dockerHost
     }
     doLast {
-        systemProperties.remove 'frontend.port'
-        systemProperties.remove 'frontend.host'
-        systemProperties.remove 'wfapi.port'
-        systemProperties.remove 'wfapi.host'
-        systemProperties.remove 'fuseki.port'
-        systemProperties.remove 'fuseki.host'
-        systemProperties.remove 'gmapi.port'
-        systemProperties.remove 'gmapi.host'
         systemProperties.remove 'essiren.port'
         systemProperties.remove 'essiren.tcp'
         systemProperties.remove 'essiren.host'
