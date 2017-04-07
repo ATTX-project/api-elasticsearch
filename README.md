@@ -8,6 +8,6 @@ The Distribution Component consists of:
 
 ## Repository Structure
 
-Currently the repository consists of:
+The repository consists of:
 * Distribution Component - Integration Tests
 * Elasticsearch 1.3.4 ATTX API plugin and associated tests
