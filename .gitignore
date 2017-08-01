@@ -3,6 +3,11 @@
 /dc-elasticsearch-siren/attx-api-plugin-feature-tests/build/
 /dc-elasticsearch-siren/attx-api-plugin/build/
 
+# Package Files #
+*.jar
+*.war
+*.ear
+
 ### Gradle ###
 .gradle
 /build/
