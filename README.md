@@ -3,11 +3,6 @@
 This ATTX Distribution Component provides the interface between the Graph Component and the applications designed for consuming and disseminating the data produced by the Semantic Web Broker platform.
 
 The Distribution Component consists of:
-* ElasticSearch 1.3.4 with Siren plugin (https://github.com/sirensolutions/siren) which has the role of indexing and making the Graph Store knowledge convenient accessible via an API;
-* ElasticSearch 5.x which provides the latest functionality in order to index data as plain JSON (after applying a JSON-LD frame http://json-ld.org/spec/latest/json-ld-framing/), JSON-LD or capturing logs.
+* Graph Framing Service that transform RDF data with a given JSON-LD frame into JSON-LD that can be indexed into Elasticsearch 5.x;
+* Indexing service - provides the interface for indexing JSON-LD data into Elasticsearch, by extracting document type and performing simple or bulk indexing.
 
-## Repository Structure
-
-The repository consists of:
-* Distribution Component - Integration Tests
-* Elasticsearch 1.3.4 ATTX API plugin and associated tests
