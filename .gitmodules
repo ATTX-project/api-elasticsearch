@@ -1,0 +1,6 @@
+[submodule "indexing-service"]
+	path = indexing-service
+	url = https://github.com/ATTX-project/indexing-service
+[submodule "graphframing-service"]
+	path = graphframing-service
+	url = https://github.com/ATTX-project/graphframing-service
